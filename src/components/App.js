@@ -1,10 +1,13 @@
 import React from 'react';
+import { Container } from 'semantic-ui-react';
+
+import LoginForm from './LoginForm';
 
 const App = () => {
   return (
-    <div>
-      App
-    </div>
+    <Container>
+      < LoginForm />
+    </Container>
   )
 }
 
