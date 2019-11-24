@@ -10,27 +10,31 @@ class Header extends React.Component {
     return (
       <Menu fixed='top' fluid widths={6} size='huge' inverted>
         <Menu.Item as='a' header>
-          <Image size='small' src='/hodlmoon/logo_2_transparent.png' style={{ marginRight: '1.5em' }} />
+          <Image size='small' src='/logo_2_transparent.png' style={{ marginRight: '1.5em' }} />
         </Menu.Item>
         <Menu.Item
+          color='teal'
           as='a'
           name='home'
           active={this.state.activeItem === 'home'}
           onClick={this.handleItemClick}
         />
         <Menu.Item
+          color='teal'
           as='a'
           name='dashboard'
           active={this.state.activeItem === 'dashboard'}
           onClick={this.handleItemClick}
         />
         <Menu.Item
+          color='teal'
           as='a'
           name='portfolio'
           active={this.state.activeItem === 'portfolio'}
           onClick={this.handleItemClick}
         />
         <Menu.Item
+          color='teal'
           as='a'
           name='account'
           active={this.state.activeItem === 'account'}
