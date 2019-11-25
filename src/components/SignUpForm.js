@@ -13,8 +13,8 @@ class SignUpForm extends React.Component {
     return(
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as='h2' color='teal' textAlign='center'> Login to your account </Header>
-          <Form size='large' onSubmit={this.props.handleSubmit(this.onSubmit)}>
+          <Header as='h2' color='teal' textAlign='center'> Sign up for an account </Header>
+          <Form error size='large' onSubmit={this.props.handleSubmit(this.onSubmit)}>
             <Segment stacked>
               <Field
                 component={Form.Input}
@@ -35,6 +35,11 @@ class SignUpForm extends React.Component {
                 />
 
               <Button color='teal' fluid size='large'> Sign Up </Button>
+              <Message
+                color='orange'
+                error
+                list={this.props.errorMessages}
+              />
             </Segment>
           </Form>
         </Grid.Column>
@@ -44,7 +49,7 @@ class SignUpForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  
+  return { errorMessages: state.auth.errorMessages }
 }
 
 export default reduxForm({
