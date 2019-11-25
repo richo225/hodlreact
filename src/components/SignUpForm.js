@@ -1,10 +1,12 @@
 import React from 'react';
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { registerUser } from '../actions';
 
 class SignUpForm extends React.Component {
   onSubmit = (formValues) => {
-    console.log(formValues)
+    this.props.registerUser(formValues)
   }
 
   render () {
@@ -41,6 +43,13 @@ class SignUpForm extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  
+}
+
 export default reduxForm({
-  form: 'login'
-})(SignUpForm);
+  form: 'registration',
+})(connect(
+  mapStateToProps,
+  { registerUser }
+)(SignUpForm));
