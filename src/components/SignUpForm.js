@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
 
-class LoginForm extends React.Component {
+class SignUpForm extends React.Component {
   onSubmit = (formValues) => {
     console.log(formValues)
   }
@@ -32,12 +32,9 @@ class LoginForm extends React.Component {
                 type='password'
                 />
 
-              <Button color='teal' fluid size='large'> Login </Button>
+              <Button color='teal' fluid size='large'> Sign Up </Button>
             </Segment>
           </Form>
-          <Message>
-            Need an account? <a href='#'>Sign Up</a>
-          </Message>
         </Grid.Column>
       </Grid>
     )
@@ -46,4 +43,4 @@ class LoginForm extends React.Component {
 
 export default reduxForm({
   form: 'login'
-})(LoginForm);
+})(SignUpForm);
