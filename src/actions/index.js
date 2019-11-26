@@ -1,5 +1,6 @@
 import pick from 'lodash/pick';
 import api from '../api/authClient';
+import history from '../history';
 import {
   REGISTRATION_SUCCESSFUL,
   SIGN_IN_SUCCESSFUL,

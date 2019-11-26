@@ -23,8 +23,8 @@ class Header extends React.Component {
         <Menu.Item
           color='teal'
           as='a'
-          name='dashboard'
-          active={this.state.activeItem === 'dashboard'}
+          name='Dashboard'
+          active={this.state.activeItem === 'Dashboard'}
           onClick={this.handleItemClick}
         />
         <Menu.Item
