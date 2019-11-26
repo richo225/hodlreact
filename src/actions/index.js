@@ -1,13 +1,16 @@
 import api from '../api/authClient';
-import { AUTHENTICATION_SUCCESSFUL } from './types';
-import { AUTHENTICATION_ERROR } from './types';
+import {
+  REGISTRATION_SUCCESSFUL,
+  SIGN_IN_SUCCESSFUL,
+  AUTHENTICATION_ERROR
+} from './types';
 
 export const registerUser = formValues => async (dispatch) => {
   try {
     const response = await api.post('/auth', formValues);
 
     dispatch({
-      type: AUTHENTICATION_SUCCESSFUL,
+      type: REGISTRATION_SUCCESSFUL,
       payload: response.data
     });
   } catch(error) {
@@ -17,3 +20,19 @@ export const registerUser = formValues => async (dispatch) => {
     });
   }
 };
+
+export const loginUser = formValues => async (dispatch)=> {
+  try {
+    const response = await api.post('/auth/sign_in', formValues);
+
+    dispatch({
+      type: SIGN_IN_SUCCESSFUL,
+      payload: response.data
+    });
+  } catch(error) {
+    dispatch({
+      type: AUTHENTICATION_ERROR,
+      payload: error.response.data.errors
+    });
+  }
+}
