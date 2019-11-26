@@ -11,7 +11,7 @@ class SignUpForm extends React.Component {
 
   render () {
     return(
-      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+      <Grid textAlign='center' style={{ paddingTop: '22%' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='teal' textAlign='center'> Sign up for an account </Header>
           <Form error size='large' onSubmit={this.props.handleSubmit(this.onSubmit)}>
@@ -20,10 +20,18 @@ class SignUpForm extends React.Component {
                 component={Form.Input}
                 name='email'
                 placeholder='E-mail address'
-                fluid icon='user'
+                fluid icon='mail'
                 iconPosition='left'
                 type='email'
-                />
+              />
+              <Field
+                component={Form.Input}
+                name='name'
+                placeholder='Full Name'
+                fluid icon='user circle'
+                iconPosition='left'
+                type='text'
+              />
               <Field
                 component={Form.Input}
                 name='password'
@@ -32,7 +40,16 @@ class SignUpForm extends React.Component {
                 icon='lock'
                 iconPosition='left'
                 type='password'
-                />
+              />
+              <Field
+                component={Form.Input}
+                name='password_confirmation'
+                placeholder='Confirm Password'
+                fluid
+                icon='lock'
+                iconPosition='left'
+                type='password'
+              />
 
               <Button color='teal' fluid size='large'> Sign Up </Button>
               <Message
