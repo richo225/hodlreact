@@ -1,6 +1,7 @@
 import React from 'react';
 import { Menu, Image, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { logoutUser } from '../actions';
 
 class Header extends React.Component {
   state = { activeItem: 'home' }
@@ -42,8 +43,11 @@ class Header extends React.Component {
           onClick={this.handleItemClick}
         />
         <Menu.Item>
-          <Button inverted color='teal'>
-            {this.props.isSignedIn ? 'Logout' : 'Login'}
+          <Button
+            inverted
+            color='teal'
+            onClick={this.props.logoutUser}>
+            Logout
           </Button>
         </Menu.Item>
       </Menu>
@@ -56,5 +60,6 @@ const mapStateToProps = state => {
 }
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  { logoutUser }
 )(Header);
