@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu, Image, Button } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
 class Header extends React.Component {
   state = { activeItem: 'home' }
@@ -41,11 +42,19 @@ class Header extends React.Component {
           onClick={this.handleItemClick}
         />
         <Menu.Item>
-          <Button inverted color='teal'>Logout</Button>
+          <Button inverted color='teal'>
+            {this.props.isSignedIn ? 'Logout' : 'Login'}
+          </Button>
         </Menu.Item>
       </Menu>
     )
   }
 }
 
-export default Header;
+const mapStateToProps = state => {
+  return { isSignedIn: state.auth.isSignedIn }
+}
+
+export default connect(
+  mapStateToProps
+)(Header);
