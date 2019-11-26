@@ -1,3 +1,4 @@
+import pick from 'lodash/pick';
 import api from '../api/authClient';
 import {
   REGISTRATION_SUCCESSFUL,
@@ -5,13 +6,18 @@ import {
   AUTHENTICATION_ERROR
 } from './types';
 
+const ACCEPTED_JWT_HEADERS = [
+  'access-token',
+  'uid',
+  'client'
+]
+
 export const registerUser = formValues => async (dispatch) => {
   try {
-    const response = await api.post('/auth', formValues);
+    await api.post('/auth', formValues);
 
     dispatch({
-      type: REGISTRATION_SUCCESSFUL,
-      payload: response.data
+      type: REGISTRATION_SUCCESSFUL
     });
   } catch(error) {
     dispatch({
@@ -27,7 +33,7 @@ export const loginUser = formValues => async (dispatch)=> {
 
     dispatch({
       type: SIGN_IN_SUCCESSFUL,
-      payload: response.data
+      payload: pick(response.headers, ACCEPTED_JWT_HEADERS)
     });
   } catch(error) {
     dispatch({
