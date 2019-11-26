@@ -34,7 +34,7 @@ class LoginForm extends React.Component {
                 type='password'
               />
 
-            <Button color='teal' fluid size='large'> Login </Button>
+              <Button color='teal' fluid size='large'> Login </Button>
               <Message
                 color='orange'
                 error
