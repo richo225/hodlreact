@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux'
 import history from '../history';
 import { verifyUser } from '../actions';
-import Header from './Header';
+import NavBar from './NavBar';
 import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
 import Dashboard from './Dashboard';
@@ -16,7 +16,7 @@ const App = (props) => {
 
   return (
     <Router history={history}>
-      < Header />
+      < NavBar />
       <Route path='/' exact component={Dashboard} />
       <Route path='/portfolio' exact component={Portfolio} />
       <Route path='/account' exact component={Account} />
