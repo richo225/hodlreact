@@ -1,6 +1,9 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { connect } from 'react-redux'
 import history from '../history';
+import { verifyUser } from '../actions';
 import Header from './Header';
 import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
@@ -8,7 +11,9 @@ import Dashboard from './Dashboard';
 import Portfolio from './Portfolio';
 import Account from './Account';
 
-const App = () => {
+const App = (props) => {
+  useEffect(() => { props.verifyUser() }, [] )
+
   return (
     <Router history={history}>
       < Header />
@@ -21,4 +26,7 @@ const App = () => {
   )
 }
 
-export default App;
+export default connect(
+  null,
+  { verifyUser }
+)(App);
