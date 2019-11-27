@@ -2,6 +2,7 @@ import {
   REGISTRATION_SUCCESSFUL,
   SIGN_IN_SUCCESSFUL,
   SIGN_OUT_SUCCESSFUL,
+  VERIFICATION_SUCCESSFUL,
   AUTHENTICATION_ERROR
 } from '../actions/types';
 
@@ -19,6 +20,8 @@ export default function(state=DEFAULT_STATE, action) {
       return {...state, authenticated_user: action.payload, isSignedIn: true}
     case SIGN_OUT_SUCCESSFUL:
       return {...state, authenticated_user: action.payload, isSignedIn: false}
+    case VERIFICATION_SUCCESSFUL:
+      return {...state, isSignedIn: true}
     case AUTHENTICATION_ERROR:
       return {...state, errorMessages: action.payload}
     default:
