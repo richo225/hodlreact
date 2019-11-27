@@ -7,7 +7,6 @@ import {
 } from '../actions/types';
 
 const DEFAULT_STATE = {
-  authenticated_user: {},
   errorMessages: null,
   isSignedIn: false
 }
@@ -17,11 +16,11 @@ export default function(state=DEFAULT_STATE, action) {
     case REGISTRATION_SUCCESSFUL:
       return state
     case SIGN_IN_SUCCESSFUL:
-      return {...state, authenticated_user: action.payload, isSignedIn: true}
-    case SIGN_OUT_SUCCESSFUL:
-      return {...state, authenticated_user: action.payload, isSignedIn: false}
+      return {...state, isSignedIn: true}
     case VERIFICATION_SUCCESSFUL:
       return {...state, isSignedIn: true}
+    case SIGN_OUT_SUCCESSFUL:
+      return {...state, isSignedIn: false}
     case AUTHENTICATION_ERROR:
       return {...state, errorMessages: action.payload}
     default:

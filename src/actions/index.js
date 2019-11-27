@@ -20,8 +20,7 @@ export const registerUser = formValues => async (dispatch) => {
     await api.post('/auth', formValues);
 
     dispatch({
-      type: REGISTRATION_SUCCESSFUL,
-      payload: {}
+      type: REGISTRATION_SUCCESSFUL
     });
 
     history.push('/')
@@ -37,14 +36,14 @@ export const registerUser = formValues => async (dispatch) => {
 export const loginUser = formValues => async (dispatch) => {
   try {
     const response = await api.post('/auth/sign_in', formValues);
-    const payload = pick(response.headers, ACCEPTED_JWT_HEADERS)
 
     dispatch({
-      type: SIGN_IN_SUCCESSFUL,
-      payload: payload
+      type: SIGN_IN_SUCCESSFUL
     });
 
-    localStorage.setItem('authenticated_user', JSON.stringify(payload))
+    const payload = pick(response.headers, ACCEPTED_JWT_HEADERS)
+    localStorage.setItem('auth_headers', JSON.stringify(payload))
+
     history.push('/')
 
   } catch(error) {
@@ -55,18 +54,17 @@ export const loginUser = formValues => async (dispatch) => {
   }
 }
 
-export const logoutUser = () => async (dispatch, getState) => {
-  const headers = getState().auth.authenticated_user
+export const logoutUser = () => async (dispatch) => {
+  const headers = JSON.parse(localStorage.getItem('auth_headers'))
 
   try {
     await api.delete('/auth/sign_out', { headers: headers })
 
     dispatch({
-      type: SIGN_OUT_SUCCESSFUL,
-      payload: {}
+      type: SIGN_OUT_SUCCESSFUL
     });
 
-    localStorage.removeItem('authenticated_user')
+    localStorage.removeItem('auth_headers')
     history.push('/login')
 
   } catch(error) {
@@ -78,21 +76,25 @@ export const logoutUser = () => async (dispatch, getState) => {
 }
 
 export const verifyUser = () => async dispatch => {
-  const params = JSON.parse(localStorage.getItem('authenticated_user'))
+  const params = JSON.parse(localStorage.getItem('auth_headers'))
 
   try {
     const response = await api.get('/auth/validate_token', { params: params });
-    const payload = pick(response.headers, ACCEPTED_JWT_HEADERS);
 
     dispatch({
       type: VERIFICATION_SUCCESSFUL
     });
 
-    localStorage.setItem('authenticated_user', JSON.stringify(payload))
+    // API sends back a new access-token every request, even after verifying the first one
+    const payload = pick(response.headers, ACCEPTED_JWT_HEADERS);
+    localStorage.setItem('auth_headers', JSON.stringify(payload))
 
   } catch(error) {
     dispatch({
-      type: AUTHENTICATION_ERROR
+      type: AUTHENTICATION_ERROR,
+      payload: null
     });
+
+    history.push('/login')
   }
 }
