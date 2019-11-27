@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { loginUser } from '../actions';
 
 class LoginForm extends React.Component {
@@ -35,6 +36,12 @@ class LoginForm extends React.Component {
               />
 
               <Button color='teal' fluid size='large'> Login </Button>
+              <Message>
+                New to us?
+                <Link to='/signup'>
+                  Sign Up
+                </Link>
+              </Message>
               <Message
                 color='orange'
                 error

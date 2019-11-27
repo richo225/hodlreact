@@ -1,5 +1,6 @@
 import pick from 'lodash/pick';
 import api from '../api/authClient';
+import history from '../history';
 import {
   REGISTRATION_SUCCESSFUL,
   SIGN_IN_SUCCESSFUL,
@@ -21,6 +22,9 @@ export const registerUser = formValues => async (dispatch) => {
       type: REGISTRATION_SUCCESSFUL,
       payload: {}
     });
+
+    history.push('/')
+
   } catch(error) {
     dispatch({
       type: AUTHENTICATION_ERROR,
@@ -37,6 +41,9 @@ export const loginUser = formValues => async (dispatch) => {
       type: SIGN_IN_SUCCESSFUL,
       payload: pick(response.headers, ACCEPTED_JWT_HEADERS)
     });
+
+    history.push('/')
+
   } catch(error) {
     dispatch({
       type: AUTHENTICATION_ERROR,
@@ -55,6 +62,9 @@ export const logoutUser = () => async (dispatch, getState) => {
       type: SIGN_OUT_SUCCESSFUL,
       payload: {}
     });
+
+    history.push('/')
+    
   } catch(error) {
     dispatch({
       type: AUTHENTICATION_ERROR,
