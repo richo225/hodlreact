@@ -22,6 +22,7 @@ const AuthButton = (props) => {
       <Button
         as={Link}
         to={handleLink}
+        loading={props.isLoading}
         inverted
         color='teal'
         onClick={()=> handleClick()}
@@ -33,7 +34,10 @@ const AuthButton = (props) => {
 }
 
 const mapStateToProps = state => {
-  return { isSignedIn: state.auth.isSignedIn }
+  return {
+    isSignedIn: state.auth.isSignedIn,
+    isLoading: state.auth.isLoading
+  }
 }
 
 export default connect(
