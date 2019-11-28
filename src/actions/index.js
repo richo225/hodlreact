@@ -105,6 +105,5 @@ export const verifyUser = () => async dispatch => {
       payload: null
     });
 
-    history.push('/login')
   }
 }
