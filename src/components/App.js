@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import { useEffect } from 'react';
 import { connect } from 'react-redux'
 import history from '../history';
@@ -10,6 +10,7 @@ import LoginForm from './LoginForm';
 import Dashboard from './Dashboard';
 import Portfolio from './Portfolio';
 import Account from './Account';
+import NotFound from './NotFound/NotFound';
 
 const App = (props) => {
   useEffect(() => { props.verifyUser() }, [] )
@@ -17,11 +18,14 @@ const App = (props) => {
   return (
     <Router history={history}>
       < NavBar />
-      <Route path='/' exact component={Dashboard} />
-      <Route path='/portfolio' exact component={Portfolio} />
-      <Route path='/account' exact component={Account} />
-      <Route path='/signup' exact component={SignUpForm} />
-      <Route path='/login' exact component={LoginForm} />
+      <Switch>
+        <Route path='/' exact component={Dashboard} />
+        <Route path='/portfolio' component={Portfolio} />
+        <Route path='/account' component={Account} />
+        <Route path='/signup' component={SignUpForm} />
+        <Route path='/login' component={LoginForm} />
+        <Route component={NotFound} />
+      </Switch>
     </Router>
   )
 }
