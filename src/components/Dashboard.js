@@ -10,7 +10,7 @@ class Dashboard extends React.Component {
       textAlign='center'
       style={{ lineHeight: '30em' }}
       >
-      Dashboard
+      Dashboards
       </Header>
     )
   }
