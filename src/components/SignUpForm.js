@@ -51,7 +51,13 @@ class SignUpForm extends React.Component {
                 type='password'
               />
 
-              <Button color='teal' fluid size='large'> Sign Up </Button>
+              <Button
+                color='teal'
+                fluid size='large'
+                loading={this.props.isLoading}
+              > Sign Up
+              </Button>
+
               <Message
                 color='orange'
                 error
@@ -66,7 +72,10 @@ class SignUpForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { errorMessages: state.auth.errorMessages }
+  return {
+    errorMessages: state.auth.errorMessages,
+    isLoading: state.auth.isLoading
+  }
 }
 
 export default reduxForm({

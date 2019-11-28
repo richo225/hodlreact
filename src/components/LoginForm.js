@@ -35,7 +35,13 @@ class LoginForm extends React.Component {
                 type='password'
               />
 
-              <Button color='teal' fluid size='large'> Login </Button>
+              <Button
+                color='teal'
+                fluid size='large'
+                loading={this.props.isLoading}
+              > Login
+              </Button>
+
               <Message>
                 New to us?
                 <Link to='/signup'>
@@ -56,7 +62,10 @@ class LoginForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { errorMessages: state.auth.errorMessages }
+  return {
+    errorMessages: state.auth.errorMessages,
+    isLoading: state.auth.isLoading
+  }
 }
 
 export default reduxForm({
