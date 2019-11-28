@@ -2,9 +2,13 @@ import pick from 'lodash/pick';
 import api from '../api/authClient';
 import history from '../history';
 import {
+  REGISTRATION_REQUEST_SENT,
   REGISTRATION_SUCCESSFUL,
+  SIGN_IN_REQUEST_SENT,
   SIGN_IN_SUCCESSFUL,
+  SIGN_OUT_REQUEST_SENT,
   SIGN_OUT_SUCCESSFUL,
+  VERIFICATION_REQUEST_SENT,
   VERIFICATION_SUCCESSFUL,
   AUTHENTICATION_ERROR
 } from './types';
@@ -16,12 +20,12 @@ const ACCEPTED_JWT_HEADERS = [
 ]
 
 export const registerUser = formValues => async (dispatch) => {
+  dispatch({ type: REGISTRATION_REQUEST_SENT });
+
   try {
     await api.post('/auth', formValues);
 
-    dispatch({
-      type: REGISTRATION_SUCCESSFUL
-    });
+    dispatch({ type: REGISTRATION_SUCCESSFUL });
 
     history.push('/')
 
@@ -34,6 +38,8 @@ export const registerUser = formValues => async (dispatch) => {
 };
 
 export const loginUser = formValues => async (dispatch) => {
+  dispatch({ type: SIGN_IN_REQUEST_SENT });
+
   try {
     const response = await api.post('/auth/sign_in', formValues);
 
@@ -55,6 +61,8 @@ export const loginUser = formValues => async (dispatch) => {
 }
 
 export const logoutUser = () => async (dispatch) => {
+  dispatch({ type: SIGN_OUT_REQUEST_SENT });
+
   const headers = JSON.parse(localStorage.getItem('auth_headers'))
 
   try {
@@ -76,6 +84,8 @@ export const logoutUser = () => async (dispatch) => {
 }
 
 export const verifyUser = () => async dispatch => {
+  dispatch({ type: VERIFICATION_REQUEST_SENT });
+
   const params = JSON.parse(localStorage.getItem('auth_headers'))
 
   try {

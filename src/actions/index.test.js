@@ -17,13 +17,15 @@ describe('async actions', () => {
     const { authResponse, signUpData } = mockData.signUpSuccess;
 
     moxios.wait(() => {
-      debugger
       const request = moxios.requests.mostRecent()
       request.respondWith({ status: 200, response: authResponse })
     })
 
     const store = mockStore({})
-    const expectedActions = [ {type: types.REGISTRATION_SUCCESSFUL} ]
+    const expectedActions = [
+      { type: types.REGISTRATION_REQUEST_SENT },
+      { type: types.REGISTRATION_SUCCESSFUL }
+    ]
 
     return store.dispatch(actions.registerUser(signUpData)).then(() => {
       expect(store.getActions()).toEqual(expectedActions)
@@ -39,10 +41,13 @@ describe('async actions', () => {
     })
 
     const store = mockStore({})
-    const expectedActions = [{
-      type: types.AUTHENTICATION_ERROR,
-      payload: authResponse.errors.full_messages
-    }]
+    const expectedActions = [
+      { type: types.REGISTRATION_REQUEST_SENT },
+      {
+        type: types.AUTHENTICATION_ERROR,
+        payload: authResponse.errors.full_messages
+      }
+    ]
 
     return store.dispatch(actions.registerUser(signUpData)).then(() => {
       expect(store.getActions()).toEqual(expectedActions)
@@ -58,7 +63,10 @@ describe('async actions', () => {
     })
 
     const store = mockStore({})
-    const expectedActions = [{ type: types.SIGN_IN_SUCCESSFUL }]
+    const expectedActions = [
+      { type: types.SIGN_IN_REQUEST_SENT },
+      { type: types.SIGN_IN_SUCCESSFUL }
+    ]
 
     return store.dispatch(actions.loginUser(signInData)).then(() => {
       expect(store.getActions()).toEqual(expectedActions)
@@ -74,10 +82,13 @@ describe('async actions', () => {
     })
 
     const store = mockStore({})
-    const expectedActions = [{
-      type: types.AUTHENTICATION_ERROR,
-      payload: authResponse.errors
-    }]
+    const expectedActions = [
+      { type: types.SIGN_IN_REQUEST_SENT },
+      {
+        type: types.AUTHENTICATION_ERROR,
+        payload: authResponse.errors
+      }
+    ]
 
     return store.dispatch(actions.loginUser(signInData)).then(() => {
       expect(store.getActions()).toEqual(expectedActions)
@@ -93,7 +104,10 @@ describe('async actions', () => {
     })
 
     const store = mockStore({})
-    const expectedActions = [{ type: types.VERIFICATION_SUCCESSFUL }]
+    const expectedActions = [
+      { type: types.VERIFICATION_REQUEST_SENT },
+      { type: types.VERIFICATION_SUCCESSFUL }
+    ]
 
     return store.dispatch(actions.verifyUser(verificationData)).then(() => {
       expect(store.getActions()).toEqual(expectedActions)
@@ -109,10 +123,13 @@ describe('async actions', () => {
     })
 
     const store = mockStore({})
-    const expectedActions = [{
-      type: types.AUTHENTICATION_ERROR,
-      payload: null
-    }]
+    const expectedActions = [
+      { type: types.VERIFICATION_REQUEST_SENT },
+      {
+        type: types.AUTHENTICATION_ERROR,
+        payload: null
+      }
+    ]
 
     return store.dispatch(actions.verifyUser(verificationData)).then(() => {
       expect(store.getActions()).toEqual(expectedActions)
