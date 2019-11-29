@@ -19,6 +19,11 @@ const ACCEPTED_JWT_HEADERS = [
   'client'
 ]
 
+const ACCEPTED_USER_DATA = [
+  'name',
+  'email'
+]
+
 export const registerUser = formValues => async (dispatch) => {
   dispatch({ type: REGISTRATION_REQUEST_SENT });
 
@@ -42,13 +47,15 @@ export const loginUser = formValues => async (dispatch) => {
 
   try {
     const response = await api.post('/auth/sign_in', formValues);
+    const userData = pick(response.data.data, ACCEPTED_USER_DATA)
 
     dispatch({
-      type: SIGN_IN_SUCCESSFUL
+      type: SIGN_IN_SUCCESSFUL,
+      payload: userData
     });
 
-    const payload = pick(response.headers, ACCEPTED_JWT_HEADERS)
-    localStorage.setItem('auth_headers', JSON.stringify(payload))
+    const auth_headers = pick(response.headers, ACCEPTED_JWT_HEADERS)
+    localStorage.setItem('auth_headers', JSON.stringify(auth_headers))
 
     history.push('/')
 
@@ -63,10 +70,10 @@ export const loginUser = formValues => async (dispatch) => {
 export const logoutUser = () => async (dispatch) => {
   dispatch({ type: SIGN_OUT_REQUEST_SENT });
 
-  const headers = JSON.parse(localStorage.getItem('auth_headers'))
+  const auth_headers = JSON.parse(localStorage.getItem('auth_headers'))
 
   try {
-    await api.delete('/auth/sign_out', { headers: headers })
+    await api.delete('/auth/sign_out', { headers: auth_headers })
 
     dispatch({
       type: SIGN_OUT_SUCCESSFUL
@@ -90,14 +97,16 @@ export const verifyUser = () => async dispatch => {
 
   try {
     const response = await api.get('/auth/validate_token', { params: params });
+    const userData = pick(response.data.data, ACCEPTED_USER_DATA)
 
     dispatch({
-      type: VERIFICATION_SUCCESSFUL
+      type: VERIFICATION_SUCCESSFUL,
+      payload: userData
     });
 
     // API sends back a new access-token every request, even after verifying the first one
-    const payload = pick(response.headers, ACCEPTED_JWT_HEADERS);
-    localStorage.setItem('auth_headers', JSON.stringify(payload))
+    const auth_headers = pick(response.headers, ACCEPTED_JWT_HEADERS);
+    localStorage.setItem('auth_headers', JSON.stringify(auth_headers))
 
   } catch(error) {
     dispatch({

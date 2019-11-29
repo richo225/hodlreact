@@ -1,24 +1,27 @@
 import reducer from './authReducer';
 import * as types from '../actions/types';
 
+const userData = {
+  name: 'Jeff',
+  email: 'jeff@mail.com'
+}
+
 const initialState = {
   errorMessages: null,
   isSignedIn: false,
-  isLoading: false
+  isLoading: false,
+  currentUser: null
 };
 
 const signedInState = {
   errorMessages: null,
-  isSignedIn: true
+  isSignedIn: true,
+  currentUser: userData
 };
 
 describe('authReducer', () => {
   it('should return the default state', () => {
-    expect(reducer(undefined, {})).toEqual({
-      errorMessages: null,
-      isSignedIn: false,
-      isLoading: false
-    })
+    expect(reducer(undefined, {})).toEqual(initialState)
   });
 
   it('should handle sent registration', () => {
@@ -40,10 +43,14 @@ describe('authReducer', () => {
   })
 
   it('should handle successful sign in', () => {
-    expect(reducer(initialState, { type: types.SIGN_IN_SUCCESSFUL })).toEqual({
+    expect(reducer(initialState, {
+      type: types.SIGN_IN_SUCCESSFUL,
+      payload: userData
+    })).toEqual({
       ...initialState,
       isSignedIn: true,
-      isLoading: false
+      isLoading: false,
+      currentUser: userData
     })
   });
 
@@ -58,7 +65,8 @@ describe('authReducer', () => {
     expect(reducer(signedInState, { type: types.SIGN_OUT_SUCCESSFUL })).toEqual({
       ...signedInState,
       isSignedIn: false,
-      isLoading: false
+      isLoading: false,
+      currentUser: null
     })
   });
 
@@ -70,17 +78,21 @@ describe('authReducer', () => {
   })
 
   it('should handle successful user verification', () => {
-    expect(reducer(initialState, { type: types.VERIFICATION_SUCCESSFUL })).toEqual({
+    expect(reducer(initialState, {
+      type: types.VERIFICATION_SUCCESSFUL,
+      payload: userData
+    })).toEqual({
       ...initialState,
       isSignedIn: true,
-      isLoading: false
+      isLoading: false,
+      currentUser: userData
     })
   });
 
   it('should handle authentication failure', () => {
     expect(reducer(initialState, {
       type: types.AUTHENTICATION_ERROR,
-      payload: { errorMessages: 'This is an error' },
+      payload: { errorMessages: 'This is an error' }
     })).toEqual({
       ...initialState,
       errorMessages: { errorMessages: 'This is an error' },

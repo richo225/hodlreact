@@ -65,7 +65,12 @@ describe('async actions', () => {
     const store = mockStore({})
     const expectedActions = [
       { type: types.SIGN_IN_REQUEST_SENT },
-      { type: types.SIGN_IN_SUCCESSFUL }
+      { type: types.SIGN_IN_SUCCESSFUL,
+        payload: {
+          email: authResponse.data.email,
+          name: authResponse.data.name
+        }
+      }
     ]
 
     return store.dispatch(actions.loginUser(signInData)).then(() => {
@@ -106,7 +111,12 @@ describe('async actions', () => {
     const store = mockStore({})
     const expectedActions = [
       { type: types.VERIFICATION_REQUEST_SENT },
-      { type: types.VERIFICATION_SUCCESSFUL }
+      { type: types.VERIFICATION_SUCCESSFUL,
+        payload: {
+          email: authResponse.data.email,
+          name: authResponse.data.name
+        }
+      }
     ]
 
     return store.dispatch(actions.verifyUser(verificationData)).then(() => {
