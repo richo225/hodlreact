@@ -145,4 +145,50 @@ describe('async actions', () => {
       expect(store.getActions()).toEqual(expectedActions)
     })
   })
+
+  it('creates ACCOUNT_UPDATE_SUCCESSFUL upon account update success', () => {
+    const { authResponse, updateData, updateHeaders } = mockData.updateSuccess;
+
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent()
+      request.respondWith({ status: 200, response: authResponse })
+    })
+
+    const store = mockStore({})
+    const expectedActions = [
+      { type: types.ACCOUNT_UPDATE_REQUEST_SENT },
+      { type: types.ACCOUNT_UPDATE_SUCCESSFUL,
+        payload: {
+          email: authResponse.data.email,
+          name: authResponse.data.name
+        }
+      }
+    ]
+
+    return store.dispatch(actions.updateUser(updateData)).then(() => {
+      expect(store.getActions()).toEqual(expectedActions)
+    })
+  })
+
+  it('creates AUTHENTICATION_ERROR upon account update failure', () => {
+    const { authResponse, updateData, updateHeaders } = mockData.updateSuccess;
+
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent()
+      request.respondWith({ status: 404, response: authResponse })
+    })
+
+    const store = mockStore({})
+    const expectedActions = [
+      { type: types.ACCOUNT_UPDATE_REQUEST_SENT },
+      {
+        type: types.AUTHENTICATION_ERROR,
+        payload: null
+      }
+    ]
+
+    return store.dispatch(actions.updateUser(updateData)).then(() => {
+      expect(store.getActions()).toEqual(expectedActions)
+    })
+  })
 })

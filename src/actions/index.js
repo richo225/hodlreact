@@ -10,6 +10,8 @@ import {
   SIGN_OUT_SUCCESSFUL,
   VERIFICATION_REQUEST_SENT,
   VERIFICATION_SUCCESSFUL,
+  ACCOUNT_UPDATE_REQUEST_SENT,
+  ACCOUNT_UPDATE_SUCCESSFUL,
   AUTHENTICATION_ERROR
 } from './types';
 
@@ -54,9 +56,7 @@ export const loginUser = formValues => async (dispatch) => {
       payload: userData
     });
 
-    const auth_headers = pick(response.headers, ACCEPTED_JWT_HEADERS)
-    localStorage.setItem('auth_headers', JSON.stringify(auth_headers))
-
+    storeAuthHeaders(response.headers)
     history.push('/')
 
   } catch(error) {
@@ -105,14 +105,40 @@ export const verifyUser = () => async dispatch => {
     });
 
     // API sends back a new access-token every request, even after verifying the first one
-    const auth_headers = pick(response.headers, ACCEPTED_JWT_HEADERS);
-    localStorage.setItem('auth_headers', JSON.stringify(auth_headers))
+    storeAuthHeaders(response.headers)
 
   } catch(error) {
     dispatch({
       type: AUTHENTICATION_ERROR,
       payload: null
     });
-
   }
+}
+
+export const updateUser = formValues => async dispatch => {
+  dispatch({ type: ACCOUNT_UPDATE_REQUEST_SENT });
+
+  try {
+    const response = await api.put('/auth', { params: formValues });
+    const userData = pick(response.data.data, ACCEPTED_USER_DATA)
+
+    dispatch({
+      type: ACCOUNT_UPDATE_SUCCESSFUL,
+      payload: userData
+    });
+
+    // API sends back a new access-token every request, even after verifying the first one
+    storeAuthHeaders(response.headers)
+
+  } catch(error) {
+    dispatch({
+      type: AUTHENTICATION_ERROR,
+      payload: null
+    });
+  }
+}
+
+const storeAuthHeaders = (responseHeaders) => {
+  const jwtHeaders = pick(responseHeaders, ACCEPTED_JWT_HEADERS);
+  localStorage.setItem('auth_headers', JSON.stringify(jwtHeaders))
 }

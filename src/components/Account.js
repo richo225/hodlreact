@@ -2,8 +2,13 @@ import React from 'react';
 import { Button, Card, Form, Grid, Image, Message } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { updateUser } from '../actions';
 
 class Account extends React.Component {
+  onSubmit = (formValues) => {
+    this.props.updateUser(formValues)
+  }
+
   render () {
     return(
       <Grid textAlign='center' style={{ paddingTop: '17%' }} verticalAlign='middle'>
@@ -15,7 +20,7 @@ class Account extends React.Component {
               src='/vitalik.jpg'
             />
             <Card.Content>
-              <Form error size='large'>
+              <Form error size='large' onSubmit={this.props.handleSubmit(this.onSubmit)} >
                 <Field
                   component={Form.Input}
                   name='name'
@@ -55,11 +60,17 @@ class Account extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { currentUser: state.auth.currentUser }
+  return {
+    initialValues: state.auth.currentUser,
+    isLoading: state.auth.isLoading,
+    errorMessages: state.auth.errorMessages
+  }
 }
 
-export default reduxForm({
-  form: 'accountUpdate',
-})(connect(
+export default connect(
   mapStateToProps,
-)(Account));
+  { updateUser }
+)(reduxForm({
+    form: 'accountUpdate',
+    enableReinitialize : true
+})(Account));
