@@ -119,7 +119,8 @@ export const updateUser = formValues => async dispatch => {
   dispatch({ type: ACCOUNT_UPDATE_REQUEST_SENT });
 
   try {
-    const response = await api.put('/auth', { params: formValues });
+    const auth_headers = JSON.parse(localStorage.getItem('auth_headers'))
+    const response = await api.put('/auth', formValues, {headers: auth_headers});
     const userData = pick(response.data.data, ACCEPTED_USER_DATA)
 
     dispatch({
@@ -133,7 +134,7 @@ export const updateUser = formValues => async dispatch => {
   } catch(error) {
     dispatch({
       type: AUTHENTICATION_ERROR,
-      payload: null
+      payload: error.response.data.errors
     });
   }
 }

@@ -183,7 +183,7 @@ describe('async actions', () => {
       { type: types.ACCOUNT_UPDATE_REQUEST_SENT },
       {
         type: types.AUTHENTICATION_ERROR,
-        payload: null
+        payload: authResponse.errors
       }
     ]
 
