@@ -6,6 +6,11 @@ const userData = {
   email: 'jeff@mail.com'
 }
 
+const newUserData = {
+  name: 'NewName',
+  email: 'new@mail.com'
+}
+
 const initialState = {
   errorMessages: null,
   isSignedIn: false,
@@ -86,6 +91,24 @@ describe('authReducer', () => {
       isSignedIn: true,
       isLoading: false,
       currentUser: userData
+    })
+  });
+
+  it('should handle sent account update', () => {
+    expect(reducer(signedInState, { type: types.ACCOUNT_UPDATE_REQUEST_SENT })).toEqual({
+      ...signedInState,
+      isLoading: true
+    })
+  })
+
+  it('should handle successful account update', () => {
+    expect(reducer(signedInState, {
+      type: types.ACCOUNT_UPDATE_SUCCESSFUL,
+      payload: newUserData
+    })).toEqual({
+      ...signedInState,
+      isLoading: false,
+      currentUser: newUserData
     })
   });
 

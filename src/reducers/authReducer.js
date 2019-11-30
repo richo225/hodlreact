@@ -7,6 +7,8 @@ import {
   SIGN_OUT_SUCCESSFUL,
   VERIFICATION_REQUEST_SENT,
   VERIFICATION_SUCCESSFUL,
+  ACCOUNT_UPDATE_REQUEST_SENT,
+  ACCOUNT_UPDATE_SUCCESSFUL,
   AUTHENTICATION_ERROR
 } from '../actions/types';
 
@@ -35,6 +37,10 @@ export default function(state=DEFAULT_STATE, action) {
       return {...state, isLoading: true}
     case VERIFICATION_SUCCESSFUL:
       return {...state, isSignedIn: true, isLoading: false, currentUser: action.payload}
+    case ACCOUNT_UPDATE_REQUEST_SENT:
+      return {...state, isLoading: true}
+    case ACCOUNT_UPDATE_SUCCESSFUL:
+      return {...state, isLoading: false, currentUser: action.payload}
     case AUTHENTICATION_ERROR:
       return {...state, errorMessages: action.payload, isLoading: false}
     default:

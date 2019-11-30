@@ -11,6 +11,7 @@ import Dashboard from './Dashboard';
 import Portfolio from './Portfolio';
 import Account from './Account';
 import NotFound from './NotFound/NotFound';
+import PrivateRoute from './routing/PrivateRoute';
 
 const App = (props) => {
   useEffect(() => { props.verifyUser() }, [] )
@@ -20,8 +21,8 @@ const App = (props) => {
       < NavBar />
       <Switch>
         <Route path='/' exact component={Dashboard} />
-        <Route path='/portfolio' component={Portfolio} />
-        <Route path='/account' component={Account} />
+        <PrivateRoute path='/portfolio' component={Portfolio} />
+        <PrivateRoute path='/account' component={Account} />
         <Route path='/signup' component={SignUpForm} />
         <Route path='/login' component={LoginForm} />
         <Route component={NotFound} />

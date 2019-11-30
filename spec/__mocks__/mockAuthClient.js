@@ -110,3 +110,44 @@ export const verificationFailure = {
     "access-token": "blah"
   }
 };
+
+export const updateSuccess = {
+  authResponse: {
+    status: "success",
+    data: {
+      id: 54,
+      email: "new@mail.com",
+      provider: "email",
+      uid: "new@mail.com",
+      name: "NewName"
+    }
+  },
+  updateData: {
+    name: "NewName",
+    email: "new@mail.com"
+  },
+  updateHeaders: {
+    uid: "old@mail.com",
+    client: "blah",
+    "access-token": "blah"
+  }
+}
+
+export const updateFailure = {
+  authResponse: {
+    success: false,
+    errors: [
+      "User not found."
+    ],
+    status: "error"
+  },
+  updateData: {
+    name: "NewName",
+    email: "new@mail.com"
+  },
+  updateHeaders: {
+    uid: "old@mail.com",
+    client: "blah",
+    "access-token": "wrongToken"
+  }
+}
