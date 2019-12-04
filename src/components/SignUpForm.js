@@ -11,7 +11,7 @@ class SignUpForm extends React.Component {
 
   render () {
     return(
-      <Grid textAlign='center' style={{ paddingTop: '22%' }} verticalAlign='middle'>
+      <Grid textAlign='center' style={{ paddingTop: '5%' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='teal' textAlign='center'> Sign up for an account </Header>
           <Form error size='large' onSubmit={this.props.handleSubmit(this.onSubmit)}>

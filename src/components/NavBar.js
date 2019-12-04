@@ -5,7 +5,7 @@ import AuthButton from './AuthButton';
 
 const NavBar = () => {
   return (
-    <Menu fixed='top' fluid widths={5} size='huge' inverted>
+    <Menu fluid widths={5} size='huge' inverted>
       <Menu.Item as={ Link } to='/' header>
         <Image size='small' src='/logo_2_transparent.png' style={{ marginRight: '1.5em' }} />
       </Menu.Item>
