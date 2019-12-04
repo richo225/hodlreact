@@ -14,11 +14,11 @@ import NotFound from './NotFound/NotFound';
 import PrivateRoute from './routing/PrivateRoute';
 
 const App = (props) => {
-  useEffect(() => { props.verifyUser() }, [] )
+  useEffect(() => { props.verifyUser() }, [props] )
 
   return (
     <Router history={history}>
-      < NavBar />
+      <NavBar />
       <Switch>
         <Route path='/' exact component={Dashboard} />
         <PrivateRoute path='/portfolio' component={Portfolio} />
