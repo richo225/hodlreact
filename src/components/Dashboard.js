@@ -57,7 +57,7 @@ const Dashboard = () => {
                   <Placeholder.Image square />
                 </Placeholder>
               ) : (
-                <Image src={card.imageurl} />
+                <Image rounded src={card.imageurl} />
               )}
 
               <Card.Content >

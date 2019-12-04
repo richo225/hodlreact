@@ -11,9 +11,9 @@ class Account extends React.Component {
 
   render () {
     return(
-      <Grid textAlign='center' style={{ paddingTop: '17%' }} verticalAlign='middle'>
+      <Grid textAlign='center' style={{ paddingTop: '5%' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 400 }}>
-          <Card>
+          <Card raised color='teal'>
             <Image
               rounded
               size='huge'
