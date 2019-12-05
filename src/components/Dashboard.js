@@ -1,9 +1,8 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import map from 'lodash/map';
 import pick from 'lodash/pick';
-import mapKeys from 'lodash/forIn';
 import take from 'lodash/take';
-import { Card, Divider, Header, Image, Placeholder, Statistic } from 'semantic-ui-react';
+import { Card, Divider, Image, Placeholder, Statistic } from 'semantic-ui-react';
 import api from '../api/dataClient';
 
 const Dashboard = () => {
