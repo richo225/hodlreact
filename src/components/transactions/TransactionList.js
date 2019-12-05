@@ -3,7 +3,6 @@ import map from 'lodash/map';
 import find from 'lodash/find';
 import { Icon, Image, Table } from 'semantic-ui-react';
 import api from '../../api/dataClient';
-import { Link } from 'react-router-dom';
 
 const TransactionList = () => {
   const [transactions, setTransactions] = useState([])

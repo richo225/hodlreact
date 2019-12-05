@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Dropdown, Form, Grid, Header, Message, Modal, Segment } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import api from '../../api/dataClient';
+import { createTransaction } from '../../actions';
 
 const TransactionCreate = (props) => {
   const [coins, setCoins] = useState([])
@@ -115,6 +117,16 @@ const TransactionCreate = (props) => {
   )
 }
 
+const mapStateToProps = state => {
+  return {
+    errorMessages: state.transaction.errorMessages,
+    isLoading: state.transaction.isLoading
+  }
+}
+
 export default reduxForm({
   form: 'createTransaction'
-})(TransactionCreate);
+})(connect(
+  mapStateToProps,
+  { createTransaction }
+)(TransactionCreate));
