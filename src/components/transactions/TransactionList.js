@@ -21,7 +21,7 @@ const TransactionList = () => {
 
     return(
       <>
-        <Table.Cell><Image src={icon_url} /></Table.Cell>
+        <Table.Cell><Image centered src={icon_url} /></Table.Cell>
         <Table.Cell>{symbol}</Table.Cell>
       </>
     )
@@ -36,7 +36,7 @@ const TransactionList = () => {
     return(
       <>
         <Table.Cell>{process}</Table.Cell>
-        <Table.Cell>{exchange}</Table.Cell>
+        <Table.Cell>{exchange.name}</Table.Cell>
         <Table.Cell>{amount}</Table.Cell>
         <Table.Cell>{humanised_price}</Table.Cell>
         <Table.Cell>{humanised_total_price}</Table.Cell>
