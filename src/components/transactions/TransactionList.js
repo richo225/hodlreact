@@ -47,7 +47,7 @@ const TransactionList = () => {
 
   return (
     <div>
-      <Table celled inverted padded selectable>
+      <Table celled inverted selectable>
         <Table.Header>
           <Table.Row textAlign='center'>
             <Table.HeaderCell></Table.HeaderCell>

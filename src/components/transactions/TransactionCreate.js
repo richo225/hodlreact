@@ -7,8 +7,6 @@ import { createTransaction } from '../../actions';
 
 const TransactionCreate = (props) => {
   useEffect(() => {
-    fetchCoins();
-    fetchExchanges();
     register({ name: "process" }, { required: true });
     register({ name: "coin_id" });
     register({ name: "amount" }, { required: true });
@@ -54,76 +52,75 @@ const TransactionCreate = (props) => {
 
   return (
     <div>
-      <Modal trigger={props.trigger} >
-      <Grid textAlign='center' style={{ padding: '10%' }} verticalAlign='middle'>
-        <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as='h2' color='teal' textAlign='center'> Create transaction </Header>
-          <Form error size='large' onSubmit={handleSubmit(onSubmit)}>
-            <Segment stacked>
-              <Form.Group>
-                <Form.Input
-                  label='Buy'
-                  name='process'
-                  value='buy'
-                  type='radio'
-                  onChange={(e, { name, value }) => { setValue(name, value) }}
-                />
-                <Form.Input
-                  label='Sell'
-                  name='process'
-                  value='sell'
-                  type='radio'
-                  onChange={(e, { name, value }) => { setValue(name, value) }}
-                />
-              </Form.Group>
-
-              <Form.Select
-                name='coin_id'
-                placeholder='Select coin'
-                options={dropdownCoins}
+      <Modal trigger={props.trigger} style={{ maxWidth: 450 }}>
+        <Form error size='large' onSubmit={handleSubmit(onSubmit)}>
+          <Segment inverted stacked>
+            <Form.Group>
+              <Form.Input
+                label='Buy'
+                name='process'
+                value='buy'
+                type='radio'
                 onChange={(e, { name, value }) => { setValue(name, value) }}
               />
               <Form.Input
-                name='amount'
-                placeholder='Amount'
-                type='number'
-                step='any'
-                min='0'
+                label='Sell'
+                name='process'
+                value='sell'
+                type='radio'
                 onChange={(e, { name, value }) => { setValue(name, value) }}
               />
-              <Form.Input
-                icon='eur'
-                iconPosition='left'
-                name='price'
-                placeholder='Price'
-                type='number'
-                step='any'
-                min='0'
-                onChange={(e, { name, value }) => { setValue(name, value) }}
-              />
-              <Form.Select
-                name='exchange_id'
-                placeholder='Select exchange'
-                options={dropdownExchanges}
-                onChange={(e, { name, value }) => { setValue(name, value) }}
-              />
+            </Form.Group>
 
-              <Button
-                color='teal'
-                fluid size='large'
-                loading={props.isLoading}
-              > Create
-              </Button>
+            <Form.Select
+              name='coin_id'
+              placeholder='Select coin'
+              search
+              onClick={fetchCoins}
+              options={dropdownCoins}
+              onChange={(e, { name, value }) => { setValue(name, value) }}
+            />
+            <Form.Input
+              name='amount'
+              placeholder='Amount'
+              type='number'
+              step='any'
+              min='0'
+              onChange={(e, { name, value }) => { setValue(name, value) }}
+            />
+            <Form.Input
+              icon='eur'
+              iconPosition='left'
+              name='price'
+              placeholder='Price'
+              type='number'
+              step='any'
+              min='0'
+              onChange={(e, { name, value }) => { setValue(name, value) }}
+            />
+            <Form.Select
+              name='exchange_id'
+              placeholder='Select exchange'
+              search
+              onClick={fetchExchanges}
+              options={dropdownExchanges}
+              onChange={(e, { name, value }) => { setValue(name, value) }}
+            />
 
-              <Message
-                color='orange'
-                error
-                list={props.errorMessages}
-              />
-            </Segment>
-          </Form>
-        </Grid.Column>
-      </Grid>
+            <Button
+              color='teal'
+              fluid size='large'
+              loading={props.isLoading}
+            > Create
+            </Button>
+
+            <Message
+              color='orange'
+              error
+              list={props.errorMessages}
+            />
+          </Segment>
+        </Form>
       </Modal>
     </div>
   )
