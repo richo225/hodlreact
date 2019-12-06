@@ -19,6 +19,8 @@ import {
   HIDE_TRANSACTION_MODAL,
   CREATE_TRANSACTION_REQUEST_SENT,
   CREATE_TRANSACTION_SUCCESSFUL,
+  DELETE_TRANSACTION_REQUEST_SENT,
+  DELETE_TRANSACTION_SUCCESSFUL,
   TRANSACTION_ERROR
 } from './types';
 
@@ -149,7 +151,7 @@ export const updateUser = formValues => async dispatch => {
 export const fetchTransactions = () => async dispatch => {
   try {
     const response = await dataApi.get('/transactions');
-    console.log(response.data.data)
+
     dispatch({
       type: FETCH_TRANSACTIONS,
       payload: response.data.data
@@ -181,9 +183,12 @@ export const createTransaction = formValues => async dispatch => {
   try {
     const response = await dataApi.post('/transactions', formValues);
 
-    dispatch({ type: CREATE_TRANSACTION_SUCCESSFUL });
+    dispatch({
+      type: CREATE_TRANSACTION_SUCCESSFUL,
+      payload: response.data.data
+    });
+
     dispatch({ type: HIDE_TRANSACTION_MODAL });
-    dispatch({ type: FETCH_TRANSACTIONS })
 
   } catch(error) {
     dispatch({
@@ -191,6 +196,25 @@ export const createTransaction = formValues => async dispatch => {
       payload: error.response
     });
   }
+}
+
+export const deleteTransaction = transactionId => async dispatch => {
+  dispatch({ type: DELETE_TRANSACTION_REQUEST_SENT })
+
+    try {
+      const response = await dataApi.delete(`/transactions/${transactionId}`);
+
+      dispatch({
+        type: DELETE_TRANSACTION_SUCCESSFUL,
+        payload: transactionId
+      });
+
+    } catch(error) {
+      dispatch({
+        type: TRANSACTION_ERROR,
+        payload: error.response
+      });
+    }
 }
 
 const storeAuthHeaders = (responseHeaders) => {

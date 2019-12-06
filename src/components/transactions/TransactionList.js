@@ -5,6 +5,7 @@ import { Icon, Image, Table } from 'semantic-ui-react';
 import api from '../../api/dataClient';
 import { connect } from 'react-redux';
 import { fetchTransactions } from '../../actions';
+import { deleteTransaction } from '../../actions';
 
 const TransactionList = (props) => {
   useEffect( () => { props.fetchTransactions() }, [] )
@@ -42,7 +43,7 @@ const TransactionList = (props) => {
 
   return (
     <div>
-      <Table celled inverted selectable>
+      <Table inverted selectable>
         <Table.Header>
           <Table.Row textAlign='center'>
             <Table.HeaderCell></Table.HeaderCell>
@@ -64,8 +65,14 @@ const TransactionList = (props) => {
               {renderCoinCells(transaction.id)}
               {renderTransactionCells(transaction.id)}
               <Table.Cell>
-                <Icon name='edit' color='teal' size='big'></Icon>
-                <Icon name='delete' color='orange' size='big'></Icon>
+                <Icon name='edit' color='teal' size='big' ></Icon>
+                <Icon
+                  name='delete'
+                  color='orange'
+                  size='big'
+                  link
+                  onClick={() => {props.deleteTransaction(transaction.id)}}>
+                </Icon>
               </Table.Cell>
             </Table.Row>
           ))}
@@ -83,5 +90,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchTransactions }
+  { fetchTransactions, deleteTransaction }
 )(TransactionList);
