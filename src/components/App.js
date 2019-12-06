@@ -9,6 +9,9 @@ import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
 import Dashboard from './Dashboard';
 import Portfolio from './Portfolio';
+import TransactionCreate from './transactions/TransactionCreate';
+import TransactionEdit from './transactions/TransactionEdit';
+import TransactionDelete from './transactions/TransactionDelete';
 import Account from './Account';
 import NotFound from './NotFound/NotFound';
 import PrivateRoute from './routing/PrivateRoute';
@@ -22,6 +25,9 @@ const App = (props) => {
       <Switch>
         <Route path='/' exact component={Dashboard} />
         <PrivateRoute path='/portfolio' component={Portfolio} />
+        <PrivateRoute path="/transactions/new" component={TransactionCreate} />
+        <PrivateRoute path="/transactions/edit/:id" component={TransactionEdit} />
+        <PrivateRoute path="/transactions/delete/:id" component={TransactionDelete} />
         <PrivateRoute path='/account' component={Account} />
         <Route path='/signup' component={SignUpForm} />
         <Route path='/login' component={LoginForm} />
