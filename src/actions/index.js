@@ -14,6 +14,9 @@ import {
   ACCOUNT_UPDATE_REQUEST_SENT,
   ACCOUNT_UPDATE_SUCCESSFUL,
   AUTHENTICATION_ERROR,
+  FETCH_TRANSACTIONS,
+  SHOW_TRANSACTION_MODAL,
+  HIDE_TRANSACTION_MODAL,
   CREATE_TRANSACTION_REQUEST_SENT,
   CREATE_TRANSACTION_SUCCESSFUL,
   TRANSACTION_ERROR
@@ -143,6 +146,35 @@ export const updateUser = formValues => async dispatch => {
   }
 }
 
+export const fetchTransactions = () => async dispatch => {
+  try {
+    const response = await dataApi.get('/transactions');
+    console.log(response.data.data)
+    dispatch({
+      type: FETCH_TRANSACTIONS,
+      payload: response.data.data
+    })
+
+  } catch(error) {
+    dispatch({
+      type: TRANSACTION_ERROR,
+      payload: error.response
+    });
+  }
+}
+
+export const showTransactionModal = () => {
+  return(
+    { type: SHOW_TRANSACTION_MODAL }
+  )
+}
+
+export const hideTransactionModal = () => {
+  return(
+    { type: HIDE_TRANSACTION_MODAL }
+  )
+}
+
 export const createTransaction = formValues => async dispatch => {
   dispatch({ type: CREATE_TRANSACTION_REQUEST_SENT })
 
@@ -150,6 +182,8 @@ export const createTransaction = formValues => async dispatch => {
     const response = await dataApi.post('/transactions', formValues);
 
     dispatch({ type: CREATE_TRANSACTION_SUCCESSFUL });
+    dispatch({ type: HIDE_TRANSACTION_MODAL });
+    dispatch({ type: FETCH_TRANSACTIONS })
 
   } catch(error) {
     dispatch({

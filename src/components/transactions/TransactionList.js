@@ -3,19 +3,14 @@ import map from 'lodash/map';
 import find from 'lodash/find';
 import { Icon, Image, Table } from 'semantic-ui-react';
 import api from '../../api/dataClient';
+import { connect } from 'react-redux';
+import { fetchTransactions } from '../../actions';
 
-const TransactionList = () => {
-  const [transactions, setTransactions] = useState([])
-  useEffect( () => { fetchTransactions() }, [] )
-
-  const fetchTransactions = async () => {
-    const response = await api.get('/transactions')
-    const { data } = response.data
-    setTransactions(data)
-  }
+const TransactionList = (props) => {
+  useEffect( () => { props.fetchTransactions() }, [] )
 
   const renderCoinCells = (transactionId) => {
-    const transaction = (find(transactions, { 'id':  transactionId }))
+    const transaction = (find(props.transactionList, { 'id':  transactionId }))
     const { icon_url, symbol } = transaction.relationships.coin.links
 
     return(
@@ -27,7 +22,7 @@ const TransactionList = () => {
   }
 
   const renderTransactionCells = (transactionId) => {
-    const transaction = (find(transactions, { 'id':  transactionId }))
+    const transaction = (find(props.transactionList, { 'id':  transactionId }))
     const {
       process, exchange, amount, humanised_price,
       humanised_total_price, created_at, updated_at } = transaction.attributes
@@ -64,7 +59,7 @@ const TransactionList = () => {
         </Table.Header>
 
         <Table.Body>
-          {map(transactions, (transaction) => (
+          {map(props.transactionList, (transaction) => (
             <Table.Row key={transaction.id} textAlign='center'>
               {renderCoinCells(transaction.id)}
               {renderTransactionCells(transaction.id)}
@@ -80,4 +75,13 @@ const TransactionList = () => {
   )
 }
 
-export default TransactionList;
+const mapStateToProps = state => {
+  return {
+    transactionList: state.transactions.transactionList
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  { fetchTransactions }
+)(TransactionList);

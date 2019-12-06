@@ -4,6 +4,7 @@ import useForm from 'react-hook-form';
 import { connect } from 'react-redux';
 import api from '../../api/dataClient';
 import { createTransaction } from '../../actions';
+import { hideTransactionModal } from '../../actions';
 
 const TransactionCreate = (props) => {
   useEffect(() => {
@@ -52,7 +53,7 @@ const TransactionCreate = (props) => {
 
   return (
     <div>
-      <Modal trigger={props.trigger} style={{ maxWidth: 450 }}>
+      <Modal style={{ maxWidth: 450 }} open={props.showModal} closeIcon onClose={props.hideTransactionModal}>
         <Form error size='large' onSubmit={handleSubmit(onSubmit)}>
           <Segment inverted stacked>
             <Form.Group>
@@ -128,12 +129,13 @@ const TransactionCreate = (props) => {
 
 const mapStateToProps = state => {
   return {
-    errorMessages: state.transaction.errorMessages,
-    isLoading: state.transaction.isLoading
+    errorMessages: state.transactions.errorMessages,
+    isLoading: state.transactions.isLoading,
+    showModal: state.transactions.showModal
   }
 }
 
 export default connect(
   mapStateToProps,
-  { createTransaction }
+  { createTransaction, hideTransactionModal }
 )(TransactionCreate);
