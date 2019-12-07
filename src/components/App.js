@@ -3,17 +3,14 @@ import { Router, Route, Switch } from 'react-router-dom';
 import { useEffect } from 'react';
 import { connect } from 'react-redux'
 import history from '../history';
-import { verifyUser } from '../actions';
+import { verifyUser } from '../actions/auth';
 import NavBar from './NavBar';
-import SignUpForm from './SignUpForm';
-import LoginForm from './LoginForm';
-import Dashboard from './Dashboard';
+import SignUpForm from './auth/SignUpForm';
+import LoginForm from './auth/LoginForm';
+import Dashboard from './dashboard/Dashboard';
 import Portfolio from './Portfolio';
-import TransactionCreate from './transactions/TransactionCreate';
-import TransactionEdit from './transactions/TransactionEdit';
-import TransactionDelete from './transactions/TransactionDelete';
 import Account from './Account';
-import NotFound from './NotFound/NotFound';
+import NotFound from './not_found/NotFound';
 import PrivateRoute from './routing/PrivateRoute';
 
 const App = (props) => {
@@ -25,9 +22,6 @@ const App = (props) => {
       <Switch>
         <Route path='/' exact component={Dashboard} />
         <PrivateRoute path='/portfolio' component={Portfolio} />
-        <PrivateRoute path="/transactions/new" component={TransactionCreate} />
-        <PrivateRoute path="/transactions/edit/:id" component={TransactionEdit} />
-        <PrivateRoute path="/transactions/delete/:id" component={TransactionDelete} />
         <PrivateRoute path='/account' component={Account} />
         <Route path='/signup' component={SignUpForm} />
         <Route path='/login' component={LoginForm} />

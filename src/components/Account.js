@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Card, Form, Grid, Image, Message } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { updateUser } from '../actions';
+import { updateUser } from '../actions/auth';
 
 class Account extends React.Component {
   onSubmit = (formValues) => {

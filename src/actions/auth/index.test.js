@@ -1,8 +1,8 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import authClient from '../api/authClient';
+import authClient from '../../api/authClient';
 import moxios from 'moxios';
-import * as mockData from '../../spec/__mocks__/mockAuthClient';
+import * as mockData from '../../../spec/__mocks__/mockAuthClient';
 import * as actions from './index';
 import * as types from './types';
 
