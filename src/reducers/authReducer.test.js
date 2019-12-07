@@ -1,5 +1,5 @@
 import reducer from './authReducer';
-import * as types from '../actions/types';
+import * as types from '../actions/auth/types';
 
 const userData = {
   name: 'Jeff',

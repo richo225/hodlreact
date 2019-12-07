@@ -4,8 +4,8 @@ import find from 'lodash/find';
 import { Icon, Image, Table } from 'semantic-ui-react';
 import api from '../../api/dataClient';
 import { connect } from 'react-redux';
-import { fetchTransactions } from '../../actions';
-import { deleteTransaction } from '../../actions';
+import { fetchTransactions } from '../../actions/transactions';
+import { deleteTransaction } from '../../actions/transactions';
 
 const TransactionList = (props) => {
   useEffect( () => { props.fetchTransactions() }, [] )

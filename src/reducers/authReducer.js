@@ -10,7 +10,7 @@ import {
   ACCOUNT_UPDATE_REQUEST_SENT,
   ACCOUNT_UPDATE_SUCCESSFUL,
   AUTHENTICATION_ERROR
-} from '../actions/types';
+} from '../actions/auth/types';
 
 const DEFAULT_STATE = {
   errorMessages: null,

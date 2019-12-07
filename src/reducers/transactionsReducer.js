@@ -9,7 +9,7 @@ import {
   DELETE_TRANSACTION_REQUEST_SENT,
   DELETE_TRANSACTION_SUCCESSFUL,
   TRANSACTION_ERROR
-} from '../actions/types';
+} from '../actions/transactions/types';
 
 const DEFAULT_STATE = {
   errorMessages: null,

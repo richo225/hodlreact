@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu, Image } from 'semantic-ui-react';
 import { Link, useLocation } from 'react-router-dom';
-import AuthButton from './AuthButton';
+import AuthButton from './auth/AuthButton';
 
 const NavBar = () => {
   return (

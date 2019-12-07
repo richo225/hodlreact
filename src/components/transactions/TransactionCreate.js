@@ -3,8 +3,8 @@ import { Button, Form, Grid, Header, Message, Modal, Segment } from 'semantic-ui
 import useForm from 'react-hook-form';
 import { connect } from 'react-redux';
 import api from '../../api/dataClient';
-import { createTransaction } from '../../actions';
-import { hideTransactionModal } from '../../actions';
+import { createTransaction } from '../../actions/transactions';
+import { hideTransactionModal } from '../../actions/transactions';
 
 const TransactionCreate = (props) => {
   useEffect(() => {

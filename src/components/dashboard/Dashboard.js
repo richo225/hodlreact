@@ -3,7 +3,7 @@ import map from 'lodash/map';
 import pick from 'lodash/pick';
 import take from 'lodash/take';
 import { Card, Divider, Image, Placeholder } from 'semantic-ui-react';
-import api from '../api/dataClient';
+import api from '../../api/dataClient';
 import MarketStatistics from './MarketStatistics';
 import News from './News';
 

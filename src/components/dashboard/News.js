@@ -9,7 +9,7 @@ const News = ({ articles, loading }) => {
       {loading ? (
           <Card.Group style={{ padding: '3%' }} centered doubling itemsPerRow={5} stackable>
             {times(5, i =>
-              <Card color='teal' centered raised>
+              <Card color='teal' key={i} centered raised>
                 <Segment raised>
                   <Placeholder>
                     <Placeholder.Image square />

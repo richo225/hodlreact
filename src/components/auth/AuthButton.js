@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logoutUser, loginUser } from '../actions';
+import { logoutUser, loginUser } from '../../actions/auth';
 
 const AuthButton = (props) => {
   const handleClick = () => {
