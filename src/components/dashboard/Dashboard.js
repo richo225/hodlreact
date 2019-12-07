@@ -36,7 +36,7 @@ const Dashboard = () => {
 
   const fetchArticles = async () => {
     const response = await api.get('/news')
-    setArticles(take(response.data, 5))
+    setArticles(take(response.data, 15))
     setArticlesLoading(false)
   }
 

@@ -55,7 +55,7 @@ const TransactionCreate = (props) => {
     <div>
       <Modal style={{ maxWidth: 450 }} open={props.showModal} closeIcon onClose={props.hideTransactionModal}>
         <Form error size='large' onSubmit={handleSubmit(onSubmit)}>
-          <Segment inverted stacked>
+          <Segment inverted stacked style={{ padding: '3%' }}>
             <Form.Group>
               <Form.Input
                 label='Buy'
