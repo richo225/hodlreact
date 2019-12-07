@@ -8,7 +8,7 @@ import NavBar from './NavBar';
 import SignUpForm from './auth/SignUpForm';
 import LoginForm from './auth/LoginForm';
 import Dashboard from './dashboard/Dashboard';
-import Portfolio from './Portfolio';
+import Portfolio from './transactions/Portfolio';
 import Account from './Account';
 import NotFound from './not_found/NotFound';
 import PrivateRoute from './routing/PrivateRoute';

@@ -8,7 +8,7 @@ const News = ({ articles, loading }) => {
     <div>
       {loading ? (
           <Card.Group style={{ padding: '3%' }} centered doubling itemsPerRow={5} stackable>
-            {times(5, i =>
+            {times(15, i =>
               <Card color='teal' key={i} centered raised>
                 <Segment raised>
                   <Placeholder>
