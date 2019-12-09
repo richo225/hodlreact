@@ -51,7 +51,7 @@ export const createTransaction = formValues => async dispatch => {
   } catch(error) {
     dispatch({
       type: TRANSACTION_ERROR,
-      payload: error.response
+      payload: error.response.data.errors
     });
   }
 }
@@ -70,7 +70,7 @@ export const deleteTransaction = transactionId => async dispatch => {
     } catch(error) {
       dispatch({
         type: TRANSACTION_ERROR,
-        payload: error.response
+        payload: error.response.data.errors
       });
     }
 }
