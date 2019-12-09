@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux'
 import history from '../history';
 import { verifyUser } from '../actions/auth';
-import NavBar from './NavBar';
+import NavBar from './navigation/NavBar';
 import SignUpForm from './auth/SignUpForm';
 import LoginForm from './auth/LoginForm';
 import Dashboard from './dashboard/Dashboard';

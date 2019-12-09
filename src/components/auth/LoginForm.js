@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import { Button, Divider, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -41,13 +41,15 @@ class LoginForm extends React.Component {
                 loading={this.props.isLoading}
               > Login
               </Button>
-
-              <Message>
-                New to us?
-                <Link to='/signup'>
-                  Sign Up
-                </Link>
-              </Message>
+              <Divider horizontal>Or</Divider>
+              <Button
+                as={ Link }
+                color='teal'
+                fluid size='large'
+                loading={this.props.isLoading}
+                to='/signup'
+              > Sign Up
+              </Button>
               <Message
                 color='orange'
                 error

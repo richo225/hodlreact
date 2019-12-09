@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, Image } from 'semantic-ui-react';
 import { Link, useLocation } from 'react-router-dom';
-import AuthButton from './auth/AuthButton';
+import AuthButton from './AuthButton';
 import DropdownBar from './DropdownBar';
 
 const NavBar = () => {

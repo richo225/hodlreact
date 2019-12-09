@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import { Button, Divider, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { registerUser } from '../../actions/auth';
 
 class SignUpForm extends React.Component {
@@ -11,7 +12,7 @@ class SignUpForm extends React.Component {
 
   render () {
     return(
-      <Grid textAlign='center' style={{ paddingTop: '5%' }} verticalAlign='middle'>
+      <Grid textAlign='center' style={{ paddingTop: '3%' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='teal' textAlign='center'> Sign up for an account </Header>
           <Form error size='large' onSubmit={this.props.handleSubmit(this.onSubmit)}>
@@ -56,6 +57,14 @@ class SignUpForm extends React.Component {
                 fluid size='large'
                 loading={this.props.isLoading}
               > Sign Up
+              </Button>
+              <Divider horizontal>Or</Divider>
+              <Button
+                as={ Link }
+                color='teal'
+                fluid size='large'
+                to='/login'
+              > Login
               </Button>
 
               <Message
