@@ -9,15 +9,21 @@ import { hideTransactionModal } from '../../actions/transactions';
 const TransactionCreate = (props) => {
   useEffect(() => {
     register({ name: "process" }, { required: true });
-    register({ name: "coin_id" });
+    register({ name: "coin_id" }, { required: true });
     register({ name: "amount" }, { required: true });
     register({ name: "price" }, { required: true });
-    register({ name: "exchange_id" });
+    register({ name: "exchange_id" }, { required: true });
   }, [])
 
   const [coins, setCoins] = useState([])
   const [exchanges, setExchanges] = useState([])
-  const { register, setValue, handleSubmit } = useForm();
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    triggerValidation,
+    errors
+  } = useForm();
 
 
   const fetchCoins = async () => {
@@ -62,14 +68,22 @@ const TransactionCreate = (props) => {
                 name='process'
                 value='buy'
                 type='radio'
-                onChange={(e, { name, value }) => { setValue(name, value) }}
+                onChange={async (e, { name, value }) => {
+                  setValue(name, value);
+                  await triggerValidation({ name });
+                }}
+                error={errors.process ? true : false}
               />
               <Form.Input
                 label='Sell'
                 name='process'
                 value='sell'
                 type='radio'
-                onChange={(e, { name, value }) => { setValue(name, value) }}
+                onChange={async (e, { name, value }) => {
+                  setValue(name, value);
+                  await triggerValidation({ name });
+                }}
+                error={errors.process ? true : false}
               />
             </Form.Group>
 
@@ -79,7 +93,11 @@ const TransactionCreate = (props) => {
               search
               onClick={fetchCoins}
               options={dropdownCoins}
-              onChange={(e, { name, value }) => { setValue(name, value) }}
+              onChange={async (e, { name, value }) => {
+                setValue(name, value);
+                await triggerValidation({ name });
+              }}
+              error={errors.coin_id ? true : false}
             />
             <Form.Input
               name='amount'
@@ -87,7 +105,11 @@ const TransactionCreate = (props) => {
               type='number'
               step='any'
               min='0'
-              onChange={(e, { name, value }) => { setValue(name, value) }}
+              onChange={async (e, { name, value }) => {
+                setValue(name, value);
+                await triggerValidation({ name });
+              }}
+              error={errors.amount ? true : false}
             />
             <Form.Input
               icon='eur'
@@ -97,7 +119,11 @@ const TransactionCreate = (props) => {
               type='number'
               step='any'
               min='0'
-              onChange={(e, { name, value }) => { setValue(name, value) }}
+              onChange={async (e, { name, value }) => {
+                setValue(name, value);
+                await triggerValidation({ name });
+              }}
+              error={errors.price ? true : false}
             />
             <Form.Select
               name='exchange_id'
@@ -105,7 +131,11 @@ const TransactionCreate = (props) => {
               search
               onClick={fetchExchanges}
               options={dropdownExchanges}
-              onChange={(e, { name, value }) => { setValue(name, value) }}
+              onChange={async (e, { name, value }) => {
+                setValue(name, value);
+                await triggerValidation({ name });
+              }}
+              error={errors.exchange_id ? true : false}
             />
 
             <Button
