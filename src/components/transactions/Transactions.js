@@ -5,7 +5,7 @@ import TransactionList from './TransactionList';
 import TransactionCreate from './TransactionCreate';
 import { showTransactionModal } from '../../actions/transactions';
 
-const Portfolio = (props) => {
+const Transactions = (props) => {
   return (
     <div>
       <Button animated='fade' color='teal' size='medium' onClick={props.showTransactionModal}>
@@ -24,4 +24,4 @@ const Portfolio = (props) => {
 export default connect(
   null,
   { showTransactionModal }
-)(Portfolio);
+)(Transactions);
