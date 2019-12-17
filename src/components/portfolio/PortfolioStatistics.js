@@ -12,7 +12,7 @@ const PortfolioStatistics = ({ portfolioData, loading }) => {
           </Progress>
         </div>
       ) : (
-        <Statistic.Group style={{ paddingTop: '2%' }} widths='five' size='mini' color='teal'>
+        <Statistic.Group style={{ paddingTop: '1%' }} widths='five' size='mini' color='teal'>
           <Statistic label={'Total holdings'} value={portfolioData.humanised_total_holdings_price} />
           <Statistic label={'Total profit'} value={portfolioData.humanised_total_profit_loss} />
           <Statistic label={'Price change 1h'} value={portfolioData.humanised_total_price_change_1h} />
