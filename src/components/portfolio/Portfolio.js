@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Divider } from 'semantic-ui-react';
+import { Divider, Grid } from 'semantic-ui-react';
 import api from '../../api/dataClient';
 import PortfolioStatistics from './PortfolioStatistics';
 import Holdings from './Holdings';
@@ -12,7 +12,7 @@ const Portfolio = (props) => {
   const [holdings, setHoldings] = useState([])
   const [holdingsLoading, setHoldingsLoading] = useState(true)
 
-  const [selectedCoin, setSelectedCoin] = useState('')
+  const [selectedCoinioId, setSelectedCoinioId] = useState(145)
 
   useEffect(
     () => {
@@ -38,8 +38,16 @@ const Portfolio = (props) => {
     <div>
       <PortfolioStatistics portfolioData={portfolioData} loading={portfolioDataLoading} />
       <Divider section></Divider>
-      <Holdings holdings={holdings} />
-      <CoinChart selectedCoin={selectedCoin} />
+      <Grid columns={2} divided>
+        <Grid.Row>
+          <Grid.Column width={6}>
+            <Holdings setSelectedCoinioId={setSelectedCoinioId} holdings={holdings} />
+          </Grid.Column>
+          <Grid.Column width={10}>
+            <CoinChart selectedCoinioId={selectedCoinioId} />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </div>
   )
 }

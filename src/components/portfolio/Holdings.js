@@ -3,7 +3,7 @@ import { Icon, Image, Table } from 'semantic-ui-react';
 import map from 'lodash/map';
 import find from 'lodash/find';
 
-const Holdings = ({ holdings }) => {
+const Holdings = ({ holdings, setSelectedCoinioId }) => {
   const renderCoinCells = (holdingId) => {
     const holding = (find(holdings, { 'id':  holdingId }))
     const { icon_url, symbol } = holding.relationships.coin.links
@@ -44,7 +44,11 @@ const Holdings = ({ holdings }) => {
 
         <Table.Body>
           {map(holdings, (holding) => (
-            <Table.Row key={holding.id} textAlign='center'>
+            <Table.Row
+              onClick={()=> setSelectedCoinioId(holding.relationships.coin.links.coinio_id)}
+              key={holding.id}
+              textAlign='center'
+            >
               {renderCoinCells(holding.id)}
               {renderHoldingsCells(holding.id)}
             </Table.Row>
