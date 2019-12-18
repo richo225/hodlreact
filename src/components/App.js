@@ -8,7 +8,9 @@ import NavBar from './navigation/NavBar';
 import SignUpForm from './auth/SignUpForm';
 import LoginForm from './auth/LoginForm';
 import Dashboard from './dashboard/Dashboard';
-import Portfolio from './transactions/Portfolio';
+import Market from './market/Market';
+import Transactions from './transactions/Transactions';
+import Portfolio from './portfolio/Portfolio';
 import Account from './Account';
 import NotFound from './not_found/NotFound';
 import PrivateRoute from './routing/PrivateRoute';
@@ -21,6 +23,8 @@ const App = (props) => {
       <NavBar />
       <Switch>
         <Route path='/' exact component={Dashboard} />
+        <Route path='/market' exact component={Market} />
+        <PrivateRoute path='/transactions' component={Transactions} />
         <PrivateRoute path='/portfolio' component={Portfolio} />
         <PrivateRoute path='/account' component={Account} />
         <Route path='/signup' component={SignUpForm} />

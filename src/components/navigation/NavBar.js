@@ -8,7 +8,7 @@ const NavBar = () => {
   const [visible, setVisible] = useState(false)
 
   return (
-    <Menu fluid widths={5} size='huge' inverted>
+    <Menu fluid widths={7} size='large' inverted>
       <Menu.Item onClick={() => { visible ? setVisible(false) : setVisible(true) } } >
         <Image size='small' src='/logo_2_transparent.png' style={{ marginRight: '1.5em' }} />
       </Menu.Item>
@@ -19,6 +19,20 @@ const NavBar = () => {
         name='dashboard'
         to='/'
         active={useLocation().pathname === '/'}
+      />
+      <Menu.Item
+        color='teal'
+        as={ Link }
+        name='market'
+        to='market'
+        active={useLocation().pathname === '/market'}
+      />
+      <Menu.Item
+        color='teal'
+        as={ Link }
+        name='transactions'
+        to='transactions'
+        active={useLocation().pathname === '/transactions'}
       />
       <Menu.Item
         color='teal'
