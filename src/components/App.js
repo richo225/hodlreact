@@ -23,7 +23,7 @@ const App = (props) => {
       <NavBar />
       <Switch>
         <Route path='/' exact component={Dashboard} />
-        <Route path='/market' component={Market} />
+        <Route path='/market' exact component={Market} />
         <PrivateRoute path='/transactions' component={Transactions} />
         <PrivateRoute path='/portfolio' component={Portfolio} />
         <PrivateRoute path='/account' component={Account} />

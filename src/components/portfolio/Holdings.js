@@ -51,7 +51,6 @@ const Holdings = ({ holdings }) => {
           ))}
         </Table.Body>
       </Table>
-
     </div>
   )
 }
