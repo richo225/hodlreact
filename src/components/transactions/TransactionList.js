@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import map from 'lodash/map';
 import find from 'lodash/find';
 import { Icon, Image, Table } from 'semantic-ui-react';
-import api from '../../api/dataClient';
 import { connect } from 'react-redux';
 import { fetchTransactions } from '../../actions/transactions';
 import { deleteTransaction } from '../../actions/transactions';

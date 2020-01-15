@@ -1,8 +1,7 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import map from 'lodash/map';
+import React, { useState, useEffect } from 'react';
 import pick from 'lodash/pick';
 import take from 'lodash/take';
-import { Card, Divider, Image, Placeholder } from 'semantic-ui-react';
+import { Divider } from 'semantic-ui-react';
 import api from '../../api/dataClient';
 import MarketStatistics from './MarketStatistics';
 import News from './News';

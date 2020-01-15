@@ -1,7 +1,7 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React from 'react';
 import map from 'lodash/map';
 import times from 'lodash/times';
-import { Card, Image, Placeholder, Grid, Dimmer, Segment, Loader } from 'semantic-ui-react';
+import { Card, Image, Placeholder, Segment } from 'semantic-ui-react';
 
 const News = ({ articles, loading }) => {
   return (

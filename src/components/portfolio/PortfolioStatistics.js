@@ -1,6 +1,6 @@
 
-import React, { Fragment } from 'react';
-import { Statistic, Placeholder, Progress } from 'semantic-ui-react';
+import React from 'react';
+import { Statistic, Progress } from 'semantic-ui-react';
 
 const PortfolioStatistics = ({ portfolioData, loading }) => {
   return (
