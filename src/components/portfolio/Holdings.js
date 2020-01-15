@@ -1,5 +1,6 @@
 import React from 'react';
-import { Icon, Image, Table } from 'semantic-ui-react';
+import { Button,Icon, Image, Table } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import map from 'lodash/map';
 import find from 'lodash/find';
 
@@ -55,6 +56,13 @@ const Holdings = ({ holdings, setSelectedCoinioId }) => {
           ))}
         </Table.Body>
       </Table>
+
+      <Button as={ Link } to='/transactions' animated='fade' color='teal' size='large'>
+        <Button.Content visible>Update Portfolio</Button.Content>
+        <Button.Content hidden>
+          <Icon name='chart line circle'/>
+        </Button.Content>
+      </Button>
     </div>
   )
 }
