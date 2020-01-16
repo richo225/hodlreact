@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { Button, Divider, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';

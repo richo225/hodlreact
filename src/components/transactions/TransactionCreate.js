@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, Grid, Header, Message, Modal, Segment } from 'semantic-ui-react';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import api from '../../api/dataClient';
 import { createTransaction } from '../../actions/transactions';
