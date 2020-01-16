@@ -60,7 +60,7 @@ export const deleteTransaction = transactionId => async dispatch => {
   dispatch({ type: DELETE_TRANSACTION_REQUEST_SENT })
 
     try {
-      const response = await dataApi.delete(`/transactions/${transactionId}`);
+      await dataApi.delete(`/transactions/${transactionId}`);
 
       dispatch({
         type: DELETE_TRANSACTION_SUCCESSFUL,

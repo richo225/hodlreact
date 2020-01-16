@@ -10,7 +10,6 @@ const Portfolio = (props) => {
   const [portfolioDataLoading, setPortfolioDataLoading] = useState(true)
 
   const [holdings, setHoldings] = useState([])
-  const [holdingsLoading, setHoldingsLoading] = useState(true)
 
   const [selectedCoinioId, setSelectedCoinioId] = useState(145)
 
@@ -31,7 +30,6 @@ const Portfolio = (props) => {
   const fetchHoldings = async () => {
     const response = await api.get('/holdings')
     setHoldings(response.data.data)
-    setHoldingsLoading(false)
   }
 
   return (
