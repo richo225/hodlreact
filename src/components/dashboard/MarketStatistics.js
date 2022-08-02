@@ -12,8 +12,8 @@ const MarketStatistics = ({ marketData, loading }) => {
         </div>
       ) : (
         <Statistic.Group style={{ paddingTop: '2%' }} widths='five' size='small' color='teal'>
-          <Statistic label={'BTC dominance'} value={marketData.btc_dominance} />
-          <Statistic label={'ETH dominance'} value={marketData.eth_dominance} />
+          <Statistic label={'BTC dominance'} value={parseFloat(marketData.btc_dominance.toPrecision(5))} />
+          <Statistic label={'ETH dominance'} value={parseFloat(marketData.eth_dominance.toPrecision(5))} />
           <Statistic label={'Active cryptocurrencies'} value={marketData.active_cryptocurrencies} />
           <Statistic label={'Active market pairs'} value={marketData.active_market_pairs} />
           <Statistic label={'Active exchanges'} value={marketData.active_exchanges} />
