@@ -8,11 +8,11 @@ import { hideTransactionModal } from '../../actions/transactions';
 
 const TransactionCreate = (props) => {
   useEffect(() => {
-    register({ name: "process" }, { required: true });
-    register({ name: "coin_id" }, { required: true });
-    register({ name: "amount" }, { required: true });
-    register({ name: "price" }, { required: true });
-    register({ name: "exchange_id" }, { required: true });
+    register("process", { required: true });
+    register("coin_id", { required: true });
+    register("amount", { required: true });
+    register("price", { required: true });
+    register("exchange_id", { required: true });
   }, [])
 
   const [coins, setCoins] = useState([])
