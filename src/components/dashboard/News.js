@@ -30,7 +30,7 @@ const News = ({ articles, loading }) => {
         <Card.Group style={{ padding: '3%' }} centered doubling itemsPerRow={5} stackable>
           {map(articles, (card) => (
             <Card color='teal' centered raised key={card.id} href={card.guid} target="_blank">
-              <Image rounded src={card.imageurl} />
+              <Image rounded src={card.imageurl} onError={i => i.target.src=''} />
               <Card.Content >
                 <Card.Header>{card.title}</Card.Header>
                 <Card.Meta>{card.categories}</Card.Meta>
