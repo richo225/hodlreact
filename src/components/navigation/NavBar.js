@@ -2,17 +2,20 @@ import React, { useState } from 'react';
 import { Menu, Image } from 'semantic-ui-react';
 import { Link, useLocation } from 'react-router-dom';
 import AuthButton from './AuthButton';
-import DropdownBar from './DropdownBar';
+import SideBar from './SideBar';
 
 const NavBar = () => {
   const [visible, setVisible] = useState(false)
 
   return (
     <Menu fluid widths={7} size='large' inverted>
-      <Menu.Item onClick={() => { visible ? setVisible(false) : setVisible(true) } } >
+      <Menu.Item
+         as={Link}
+         to='/'
+         onMouseEnter={() => visible ? setVisible(false) : setVisible(true)} 
+        >
         <Image size='small' src='/logo_2_transparent.png' style={{ marginRight: '1.5em' }} />
       </Menu.Item>
-      <DropdownBar visible={visible}/>
       <Menu.Item
         color='teal'
         as={ Link }
@@ -48,9 +51,11 @@ const NavBar = () => {
         to='account'
         active={useLocation().pathname === '/account'}
       />
-      <Menu.Item onClick={() => { visible ? setVisible(false) : setVisible(true) } }>
+      <Menu.Item>
         <AuthButton />
       </Menu.Item>
+  
+      <SideBar visible={visible}/>
     </Menu>
   )
 }
