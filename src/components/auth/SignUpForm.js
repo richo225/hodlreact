@@ -7,10 +7,10 @@ import { registerUser } from '../../actions/auth';
 
 const SignUpForm = (props) => {
   useEffect(() => {
-    register({ name: "email" }, { required: true });
-    register({ name: "name" }, { required: true });
-    register({ name: "password" }, { required: true });
-    register({ name: "password_confirmation" }, { required: true });
+    register("email", { required: true });
+    register("name", { required: true });
+    register("password", { required: true });
+    register("password_confirmation", { required: true });
   }, [])
 
   const { register, setValue, handleSubmit } = useForm();

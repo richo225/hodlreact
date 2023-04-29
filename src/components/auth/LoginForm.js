@@ -7,8 +7,8 @@ import { loginUser } from '../../actions/auth';
 
 const LoginForm = (props) => {
   useEffect(() => {
-    register({ name: "email" }, { required: true });
-    register({ name: "password" }, { required: true });
+    register("email", { required: true });
+    register("password", { required: true });
   }, [])
 
   const { register, setValue, handleSubmit } = useForm();
