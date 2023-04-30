@@ -9,7 +9,7 @@
 </p>
 <br>
 <p align="center">
-  <a href="https://app.netlify.com/sites/richardbates/deploys" target="_blank">
+  <a href="https://hodlreact-production.up.railway.app" target="_blank">
     <img src="https://img.shields.io/website?label=railway&&up_message=success&url=https%3A%2F%2Fhodlreact-production.up.railway.app%2F" />
   </a>
   <a href="https://dl.circleci.com/status-badge/redirect/gh/richo225/hodlreact/tree/master" target="_blank">
