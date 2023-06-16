@@ -2,7 +2,7 @@
   <img alt="Logo" src="https://raw.githubusercontent.com/richo225/hodlreact/master/public/logo_2_transparent.png" width="150" />
 </div>
 <p align="center">
-  Cryptocurrency portfolio tracker <a href="https://hodlreact-production.up.railway.app" target="_blank">hodlreact-production.up.railway.app</a>.
+  Cryptocurrency portfolio tracker <a href="https://hodlmoon.up.railway.app" target="_blank">hodlmoon.up.railway.app</a>.
 </p>
 <p align="center">
   Built with <a href="https://react.dev/" target="_blank">React</a> in front of a <a href="https://github.com/richo225/hodlmoon_API" target="_blank">Rails GraphQL API</a> and hosted with <a href="https://www.railway.app/" target="_blank">Railway</a>.
